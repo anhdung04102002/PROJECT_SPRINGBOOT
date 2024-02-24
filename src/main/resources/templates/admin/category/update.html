@@ -263,7 +263,7 @@
                       th:object="${category}">
                     <div class="card-body">
                         <div class="form-group">
-                                    <!--form sửa cần thêm id để khi sửa có thể lưu được id mà không bị thêm mới một danh mục-->
+                            <!--form sửa cần thêm id để khi sửa có thể lưu được id mà không bị thêm mới một danh mục-->
                             <input type="hidden" class="form-control" th:field="*{id} "
                                    placeholder="" required>
                             <label>Tên danh mục</label>
@@ -275,13 +275,13 @@
                             <div class="col-sm-12 col-md-6 col-xl-4 m-b-30">
                                 <div class="radio radiofill radio-inline">
                                     <label>
-                                        <input type="radio"   th:field="*{categoryStatus}" value="1" >
+                                        <input type="radio" th:field="*{categoryStatus}" value="1">
                                         <i class="helper"></i>Hiện
                                     </label>
                                 </div>
-                                <div class="radio radiofill radio-inline"   >
+                                <div class="radio radiofill radio-inline">
                                     <label>
-                                        <input type="radio" th:field="*{categoryStatus}" value="0" >
+                                        <input type="radio" th:field="*{categoryStatus}" value="0">
                                         <i class="helper"></i>Ẩn
                                     </label>
                                 </div>
