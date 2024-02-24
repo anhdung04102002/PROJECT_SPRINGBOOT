@@ -255,14 +255,17 @@
 
             <div class="card card-primary">
                 <div class="">
-                    <h3 style="margin-left: 50px" class="card-title">Thêm mới danh mục </h3>
+                    <h3 style="margin-left: 50px" class="card-title">Sửa danh mục </h3>
                 </div>
                 <!--                nút thêm mới-->
-<!-- form thêm danh mục-->
-                <form method="POST" id="quickForm" th:action="@{/admin/add-category/saveCategories}"
+                <!-- form thêm danh mục-->
+                <form method="POST" id="quickForm" th:action="@{/admin/categogy/update}"
                       th:object="${category}">
                     <div class="card-body">
                         <div class="form-group">
+                                    <!--form sửa cần thêm id để khi sửa có thể lưu được id mà không bị thêm mới một danh mục-->
+                            <input type="hidden" class="form-control" th:field="*{id} "
+                                   placeholder="" required>
                             <label>Tên danh mục</label>
                             <input type="text" class="form-control" th:field="*{categoryName} "
                                    placeholder="Nhập tên danh mục" required>
@@ -278,7 +281,7 @@
                                 </div>
                                 <div class="radio radiofill radio-inline"   >
                                     <label>
-                                        <input type="radio" th:field="*{categoryStatus}" value ="0" >
+                                        <input type="radio" th:field="*{categoryStatus}" value="0" >
                                         <i class="helper"></i>Ẩn
                                     </label>
                                 </div>
@@ -289,7 +292,7 @@
                         <button type="submit" class="btn btn-primary">Lưu</button>
                     </div>
                 </form>
-<!-- form thêm danh mục-->
+                <!-- form thêm danh mục-->
             </div>
         </div>
         <div class="col-md-6">

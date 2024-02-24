@@ -276,6 +276,8 @@
                                         <th class="cell">ID</th>
                                         <th class="cell">Tên</th>
                                         <th class="cell">Trạng thái</th>
+                                        <th class="cell"></th>
+                                        <th class="cell"></th>
 
                                     </tr>
                                     </thead>
@@ -289,6 +291,23 @@
                                                 class="badge bg-success">Hiện</span></td>
                                         <td th:if="${!categories.categoryStatus}" class="cell"><span
                                                 class="badge bg-danger">Ẩn</span></td>
+                                        <td>
+                                            <a href="#" th:href="@{/admin/category/update/{id}(id = ${categories.id})}">
+                                                <button type="submit" class="btn app-btn-secondary"
+                                                        style="background-color: #7dc292">Sửa
+                                                </button>
+                                            </a>
+                                        </td>
+                                        <td>
+<!--                          onclick bắt phải return confirm thì khi ấn hủy mới hủy được (đặt dấu ; ở cuối, giống dạng true false lựa chọn)-->
+                                            <a th:href="@{/admin/category/delete/{id}(id = ${categories.id})}"
+                                               onclick="return confirm('Xóa danh mục này ?');">
+                                                <button type="submit" class="btn app-btn-secondary"
+                                                        style="background-color: #dc3545"
+                                                >Xóa
+                                                </button>
+                                            </a>
+                                        </td>
                                     </tr>
 
                                     </tbody>
