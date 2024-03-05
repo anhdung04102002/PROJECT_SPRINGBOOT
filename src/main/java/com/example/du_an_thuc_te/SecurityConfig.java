@@ -30,11 +30,14 @@ public class SecurityConfig {
                         .hasAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login")
-                        .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/admin", true));
+                        .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/admin", true))
+                .logout(logout -> logout.logoutUrl("/admin-logout").logoutSuccessUrl("/login"))
+        ;
+
         return http.build();
     }
     @Bean
     WebSecurityCustomizer webSecurityCustomizer() {
-        return ((web) -> web.ignoring().requestMatchers("/assets/**"));
+        return ((web) -> web.ignoring().requestMatchers("/assets/**").requestMatchers("/fe/**").requestMatchers("uploads/**"));
     } // cho phép truy cập vào css và js ... template
 }

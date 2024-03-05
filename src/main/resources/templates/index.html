@@ -1,10 +1,397 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link rel="icon" th:href="@{/fe/image/icon.png}" type="image/x-icon">
+<!--    icon trang web -->
+    <title>Trang chủ</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" th:href="@{/css/mdb.min.css}" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" th:href="@{/fe/css/style.css}" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
 </head>
+
 <body>
+<!--Main Navigation-->
+<header>
+    <!-- Jumbotron -->
+    <div class="p-3 text-center bg-white border-bottom">
+        <div class="container">
+            <div class="row gy-3">
+                <!-- Left elements -->
+                <div class="col-lg-2 col-sm-4 col-4 d-flex justify-content-center align-items-center">
+                    <a href="#" target="_blank" class="">
+                        <img th:src="@{/fe/image/logo.png}" height="70" />
+                    </a>
+                </div>
+                <!-- Left elements -->
+
+                <!-- Center elements -->
+                <div class="order-lg-last col-lg-5 col-sm-8 col-8">
+                    <div class="d-flex float-end">
+                        <a th:href="@{/login}"
+                           class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
+                                class="fas fa-user-alt m-1 me-md-2"></i>
+                            <p class="d-none d-md-block mb-0">Đăng nhập</p>
+                        </a>
+                        <a href="https://github.com/mdbootstrap/bootstrap-material-design"
+                           class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
+                                class="fas fa-heart m-1 me-md-2"></i>
+                            <p class="d-none d-md-block mb-0">Wishlist</p>
+                        </a>
+                        <a href="https://github.com/mdbootstrap/bootstrap-material-design"
+                           class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
+                                class="fas fa-shopping-cart m-1 me-md-2"></i>
+                            <p class="d-none d-md-block mb-0">My cart</p>
+                        </a>
+                    </div>
+                </div>
+                <!-- Center elements -->
+
+                <!-- Right elements -->
+                <div class="col-lg-5 col-md-12 col-12">
+                    <div class="input-group float-center">
+                        <div class="form-outline">
+                            <input type="search" id="form1" class="form-control" />
+                            <label class="form-label" for="form1">Search</label>
+                        </div>
+                        <button type="button" class="btn btn-primary shadow-0">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Right elements -->
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <!-- Container wrapper -->
+        <div class="container justify-content-center justify-content-md-between">
+            <!-- Toggle button -->
+            <button class="navbar-toggler border py-2 text-dark" type="button" data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarLeftAlignExample" aria-controls="navbarLeftAlignExample" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" aria-current="page" href="#">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">Danh mục trang sức</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">Menu item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">Menu name</a>
+                    </li>
+                    <!-- Navbar dropdown -->
+                    <li li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
+                           data-mdb-toggle="dropdown" aria-expanded="false">
+                            Others
+                        </a>
+                        <!-- Dropdown menu -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    <!-- Jumbotron -->
+    <div class="">
+        <img src="image/banner.jpg" alt="" width="100%" height="auto">
+    </div>
+    <!-- Jumbotron -->
+</header>
+<!-- Products -->
+<section>
+    <div class="container my-5">
+        <header class="mb-4">
+            <h3>New products</h3>
+        </header>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                <div class="card w-100 my-2 shadow-2-strong">
+                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp" class="card-img-top"
+                         style="aspect-ratio: 1 / 1" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">GoPro HERO6 4K Action Camera - Black</h5>
+                        <p class="card-text">$790.50</p>
+                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i
+                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                <div class="card w-100 my-2 shadow-2-strong">
+                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/2.webp" class="card-img-top"
+                         style="aspect-ratio: 1 / 1" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Canon camera 20x zoom, Black color EOS 2000</h5>
+                        <p class="card-text">$320.00</p>
+                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i
+                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                <div class="card w-100 my-2 shadow-2-strong">
+                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/3.webp" class="card-img-top"
+                         style="aspect-ratio: 1 / 1" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Xiaomi Redmi 8 Original Global Version 4GB</h5>
+                        <p class="card-text">$120.00</p>
+                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i
+                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                <div class="card w-100 my-2 shadow-2-strong">
+                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/4.webp" class="card-img-top"
+                         style="aspect-ratio: 1 / 1" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Apple iPhone 12 Pro 6.1" RAM 6GB 512GB Unlocked</h5>
+                        <p class="card-text">$120.00</p>
+                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i
+                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                <div class="card w-100 my-2 shadow-2-strong">
+                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/5.webp" class="card-img-top"
+                         style="aspect-ratio: 1 / 1" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Apple Watch Series 1 Sport Case 38mm Black</h5>
+                        <p class="card-text">$790.50</p>
+                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i
+                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                <div class="card w-100 my-2 shadow-2-strong">
+                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/6.webp" class="card-img-top"
+                         style="aspect-ratio: 1 / 1" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">T-shirts with multiple colors, for men and lady</h5>
+                        <p class="card-text">$120.00</p>
+                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i
+                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                <div class="card w-100 my-2 shadow-2-strong">
+                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/7.webp" class="card-img-top"
+                         style="aspect-ratio: 1 / 1" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Gaming Headset 32db Blackbuilt in mic</h5>
+                        <p class="card-text">$99.50</p>
+                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                            <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
+                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+                <div class="card w-100 my-2 shadow-2-strong">
+                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/8.webp" class="card-img-top"
+                         style="aspect-ratio: 1 / 1" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">T-shirts with multiple colors, for men and lady</h5>
+                        <p class="card-text">$120.00</p>
+                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                            <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i
+                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Products -->
+<nav aria-label="Page navigation example" >
+    <ul class="pagination">
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</nav>
+
+
+
+<!-- Feature -->
+<section class="mt-5" style="background-color: #f5f5f5;">
+    <div class="container text-dark pt-3">
+        <header class="pt-4 pb-3">
+            <h3>Tại sao chọn chúng tôi?</h3>
+
+        </header>
+
+        <div class="row mb-4">
+            <div class="col-lg-4 col-md-6">
+                <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-camera-retro fa-2x fa-fw text-primary floating"></i>
+            </span>
+                    <figcaption class="info">
+                        <h6 class="title">Giá cả hợp lý</h6>
+                        <p>Mức giá hợp lý, phù hợp với túi tiền của bạn</p>
+                    </figcaption>
+                </figure>
+                <!-- itemside // -->
+            </div>
+            <!-- col // -->
+            <div class="col-lg-4 col-md-6">
+                <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-star fa-2x fa-fw text-primary floating"></i>
+            </span>
+                    <figcaption class="info">
+                        <h6 class="title">Chất lượng tốt nhất</h6>
+                        <p>Chúng tôi cam kết cung cấp sản phẩm/dịch vụ với chất lượng tốt nhất</p>
+                    </figcaption>
+                </figure>
+                <!-- itemside // -->
+            </div>
+            <!-- col // -->
+            <div class="col-lg-4 col-md-6">
+                <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-plane fa-2x fa-fw text-primary floating"></i>
+            </span>
+                    <figcaption class="info">
+                        <h6 class="title">Giao hàng toàn cầu</h6>
+                        <p>Dịch vụ giao hàng toàn cầu, nhanh chóng và tiện lợi</p>
+                    </figcaption>
+                </figure>
+                <!-- itemside // -->
+            </div>
+            <!-- col // -->
+            <div class="col-lg-4 col-md-6">
+                <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-users fa-2x fa-fw text-primary floating"></i>
+            </span>
+                    <figcaption class="info">
+                        <h6 class="title">Sự hài lòng của khách hàng</h6>
+                        <p>Đảm bảo sự hài lòng của khách hàng là ưu tiên hàng đầu của chúng tôi</p>
+                    </figcaption>
+                </figure>
+                <!-- itemside // -->
+            </div>
+            <!-- col // -->
+            <div class="col-lg-4 col-md-6">
+                <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-thumbs-up fa-2x fa-fw text-primary floating"></i>
+            </span>
+                    <figcaption class="info">
+                        <h6 class="title">Khách hàng hạnh phúc</h6>
+                        <p>Chúng tôi luôn phấn đấu để mang lại trải nghiệm mua sắm tuyệt vời cho khách hàng</p>
+                    </figcaption>
+                </figure>
+                <!-- itemside // -->
+            </div>
+            <!-- col // -->
+            <div class="col-lg-4 col-md-6">
+                <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-box fa-2x fa-fw text-primary floating"></i>
+            </span>
+                    <figcaption class="info">
+                        <h6 class="title">Hàng ngàn mặt hàng</h6>
+                        <p>Chúng tôi cung cấp hàng ngàn mặt hàng đa dạng, đáp ứng mọi nhu cầu của bạn</p>
+                    </figcaption>
+                </figure>
+                <!-- itemside // -->
+            </div>
+            <!-- col // -->
+        </div>
+    </div>
+    <!-- container end.// -->
+</section>
+<!-- Feature -->
+
+<!-- Blog -->
+
+<!-- Blog -->
+
+
+<!-- Footer -->
+<!-- MDB -->
+<script type="text/javascript" th:src="@{/fe/js/mdb.min.js}"></script>
+<!-- Custom scripts -->
+<script type="text/javascript" th:src="@{/fe/js/script.js}"></script>
 
 </body>
+
 </html>

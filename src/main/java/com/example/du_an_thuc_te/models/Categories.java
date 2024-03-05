@@ -2,6 +2,8 @@ package com.example.du_an_thuc_te.models;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "categories")
 public class Categories {
@@ -13,6 +15,23 @@ public class Categories {
     private String categoryName;
     @Column(name = "categoryStatus")
     private Boolean categoryStatus;
+    @OneToMany(mappedBy = "categories")
+    private Set<Product> products;
+
+    public Categories(int id, String categoryName, Boolean categoryStatus, Set<Product> products) {
+        this.id = id;
+        this.categoryName = categoryName;
+        this.categoryStatus = categoryStatus;
+        this.products = products;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 
     public Categories() {
     }

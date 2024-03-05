@@ -3,7 +3,8 @@
 
 
 <head>
-    <title>Trang chủ ADMIN</title>
+    <link rel="icon" th:href="@{/fe/image/icon.png}" type="image/x-icon">
+    <title>Add Categories ADMIN</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -71,14 +72,17 @@
                             <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown"
                                th:href="@{/#}"
                                role="button" aria-expanded="false"><img th:src="@{/assets/images/user.png}"
-                                                                        alt="user profile"></a>
+                                                                        alt="user profile">
+                                <span th:text="${#authentication.name}"></span>
+<!--                                    thêm tên người dùng đăng nhập-->
+                            </a>
                             <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                                 <li><a class="dropdown-item" th:href="@{/account.html}">Account</a></li>
                                 <li><a class="dropdown-item" th:href="@{/settings.html}">Settings</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" th:href="@{/login.html}">Log Out</a></li>
+                                <li><a class="dropdown-item" th:href="@{/admin-logout}">Log Out</a></li>
                             </ul>
                         </div><!--//app-user-dropdown-->
                     </div><!--//app-utilities-->
@@ -180,7 +184,7 @@
                                     lí
                                     danh mục</a>
                                 </li>
-                                <li class="submenu-item"><a class="submenu-link" th:href="@{/#}">Quản lí sản phẩm</a>
+                                <li class="submenu-item"><a class="submenu-link" th:href="@{/admin/product}">Quản lí sản phẩm</a>
                                 </li>
                             </ul>
                         </div>

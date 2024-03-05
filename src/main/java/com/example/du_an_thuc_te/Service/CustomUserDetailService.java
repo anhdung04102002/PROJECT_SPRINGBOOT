@@ -28,8 +28,8 @@ public class CustomUserDetailService implements UserDetailsService {
             Collection<GrantedAuthority> grantedAuthorities = new HashSet<>(); //DUYỆT CÁC QUYỀN
             Set<UserRole> roles = user.getUserRoles(); // lấy danh sách các quyền
             for(UserRole userRole : roles) {
-                grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getRole().getName()));
-            }
+                grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getRole().getName())); // lấy tên quyền user ví dụ như "ADMIN" hoặc "USER"
+            } // SimpleGrantedAuthority trả về tên quyền
 
         return new CustomUserDetail(grantedAuthorities,user); //danh sách các quyền và user
     }
