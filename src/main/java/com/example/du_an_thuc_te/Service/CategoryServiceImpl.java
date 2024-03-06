@@ -1,10 +1,16 @@
 package com.example.du_an_thuc_te.Service;
 
 import com.example.du_an_thuc_te.models.Categories;
+import com.example.du_an_thuc_te.models.Product;
 import com.example.du_an_thuc_te.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,5 +46,32 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public void deleteCategories(int id) {
        this.categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Categories> searchCategory(String keyword) {
+       return this.categoryRepository.searchCategories(keyword);
+    }
+
+    @Override
+    public Page<Categories> getAll(int pageNo) {
+         Pageable pageable = PageRequest.of(pageNo - 1, 3);
+        return this.categoryRepository.findAll(pageable);    }
+
+    @Override
+    public Page<Categories> searchCategory(String keyword, int pageNo) {
+
+        List<Categories> list = this.searchCategory(keyword);
+        Pageable pageable = PageRequest.of(pageNo - 1, 3);
+        int totalItems = list.size();
+
+        if (totalItems == 0) {
+            return new PageImpl<>(new ArrayList<>(), pageable, 0);
+        } else {
+            int start = (int) pageable.getOffset();
+            int end = (int) Math.min((start + pageable.getPageSize()), totalItems);
+            List<Categories> sublist = list.subList(start, end);
+            return new PageImpl<>(sublist, pageable, totalItems);
+        }
     }
 }

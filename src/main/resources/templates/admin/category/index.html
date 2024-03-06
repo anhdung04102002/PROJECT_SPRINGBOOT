@@ -45,7 +45,7 @@
                     </div><!--//col-->
                     <div class="app-search-box col">
                         <form class="app-search-form">
-                            <input type="text" placeholder="Search..." name="search"
+                            <input type="text" placeholder="Search..." name="keyword"
                                    class="form-control search-input">
                             <button type="submit" class="btn search-btn btn-primary" value="Search"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
@@ -335,10 +335,23 @@
 
     <footer class="app-footer">
         <div class="container text-center py-3">
+            <nav class="app-pagination">
+                <ul class="pagination justify-content-center"  >
+                    <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
+                        <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+(-1)}}">Previous</a>
+                    </li>
+<!--                    vì danh sách nếu không có keyword trùng dữ liệu thì tổng số trang sẽ bằng 0 nên ta đặt thêm điuều kiện nếu tổng số trang mà nhỏ hơn bằng 0 thì bằng 1-->
+                    <li th:each="i:${#numbers.sequence(1,(totalPage > 0 ? totalPage : 1))}" class="page-item" th:classappend="${currentPage==i}?'active':''">
+                        <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${i}}" th:text="${i}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${currentPage == totalPage || totalPage < 1} ? 'disabled' : ''">
+                        <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+1}}">Next</a>
+                    </li>
+                </ul>
+            </nav>
             <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-
-
         </div>
+
     </footer><!--//app-footer-->
 
 </div><!--//app-wrapper-->

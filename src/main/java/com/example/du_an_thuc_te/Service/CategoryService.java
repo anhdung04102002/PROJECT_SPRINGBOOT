@@ -1,6 +1,9 @@
 package com.example.du_an_thuc_te.Service;
 
 import com.example.du_an_thuc_te.models.Categories;
+import com.example.du_an_thuc_te.models.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -9,4 +12,9 @@ public interface CategoryService {
     void saveCategories(Categories categories);
     Categories getCategoriesById(int id);
     void deleteCategories(int id);
+    List<Categories> searchCategory(String keyword);
+    Page<Categories> getAll(int pageNo);
+    Page<Categories> searchCategory(String keyword,int pageNo);
+
+
 }

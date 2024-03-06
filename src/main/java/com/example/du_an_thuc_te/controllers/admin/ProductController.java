@@ -6,6 +6,7 @@ import com.example.du_an_thuc_te.Service.StorageService;
 import com.example.du_an_thuc_te.models.Categories;
 import com.example.du_an_thuc_te.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -28,9 +29,11 @@ public class ProductController {
 
 
     @RequestMapping("/product")
-    public String index(Model model) {
-        List<Product> list = productService.getAll();
+    public String index(Model model,@RequestParam(name = "pageNo",defaultValue = "1") int pageNo) { //đặt mặc định trang đầu là 1
+        Page<Product> list = productService.getAll(pageNo);
         model.addAttribute("list", list);
+        model.addAttribute("totalPage",list.getTotalPages()); //tong so trang
+        model.addAttribute("currentPage",pageNo);
         return "admin/product/index";
     }
 

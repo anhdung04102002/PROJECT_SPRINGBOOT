@@ -296,9 +296,9 @@
                                     <tr th:each="product : ${list}">
                                         <td th:text="${product.id}" class="cell"></td>
                                         <td th:text="${product.productName}" class="cell"></td>
-                                        <td  class="cell">
+                                        <td class="cell">
                                             <span th:inline="text"> [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]đ</span>
-<!--                                            format số giá -->
+                                            <!--                                            format số giá -->
                                         </td>
                                         <td><img th:src="@{'/uploads/'+ ${product.image}}"
                                                  style="max-height: 200px;display: flex;justify-content: center;align-items: center"
@@ -344,6 +344,20 @@
 
     <footer class="app-footer">
         <div class="container text-center py-3">
+            <nav class="app-pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
+                        <!--   classappend dùng thay if , là lớp tạo thuộc tính css giựa vào điều kiện-->
+                        <a class="page-link" th:href="@{'?pageNo='+${currentPage+(-1)}}">Previous</a>
+                    </li>
+                    <li th:each="i:${#numbers.sequence(1,totalPage)}" class="page-item"
+                        th:classappend="${currentPage==i}?'active':''"><a class="page-link" th:href="@{'?pageNo='+${i}}"
+                                                                          th:text="${i}"></a></li>
+                    <li class="page-item" th:classappend="${currentPage == totalPage} ? 'disabled' : ''">
+                        <a class="page-link" th:href="@{'?pageNo='+${currentPage+1}}">Next</a>
+                    </li>
+                </ul>
+            </nav>
             <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
 
 
