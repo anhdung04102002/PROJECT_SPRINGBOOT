@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserService{
             return new PageImpl<>(sublist, pageable, totalItems);
         }
     }
+
+    @Override
+    public void deleteUser(int id) {
+        this.userRepository.deleteById(id);
+    }
 }

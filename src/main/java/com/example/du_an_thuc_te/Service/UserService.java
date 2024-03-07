@@ -13,4 +13,6 @@ public interface UserService {
     List<User> searchUser(String keyword);
     Page<User> getAll(int pageNo);
     Page<User> searchUser(String keyword,int pageNo);
+    void deleteUser(int id);
+
 }

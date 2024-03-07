@@ -7,6 +7,7 @@ import com.example.du_an_thuc_te.models.Categories;
 import com.example.du_an_thuc_te.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -29,8 +30,12 @@ public class ProductController {
 
 
     @RequestMapping("/product")
-    public String index(Model model,@RequestParam(name = "pageNo",defaultValue = "1") int pageNo) { //đặt mặc định trang đầu là 1
+    public String index(Model model, @Param("keyword") String keyword, @RequestParam(name = "pageNo",defaultValue = "1") int pageNo) { //đặt mặc định trang đầu là 1
         Page<Product> list = productService.getAll(pageNo);
+        if (keyword != null && !keyword.isEmpty()) {
+            list = this.productService.searchProduct(keyword,pageNo);
+            model.addAttribute("keyword",keyword);
+        }
         model.addAttribute("list", list);
         model.addAttribute("totalPage",list.getTotalPages()); //tong so trang
         model.addAttribute("currentPage",pageNo);
