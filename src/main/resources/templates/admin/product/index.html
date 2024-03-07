@@ -45,7 +45,7 @@
                     </div><!--//col-->
                     <div class="app-search-box col">
                         <form class="app-search-form">
-                            <input type="text" placeholder="Search..." name="search"
+                            <input type="text" placeholder="Search..." name="keyword"
                                    class="form-control search-input">
                             <button type="submit" class="btn search-btn btn-primary" value="Search"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
@@ -179,7 +179,7 @@
                             <!--                            đặt sau class thêm "show" để hiện vị trí hiện tại được trỏ-->
                             <ul class="submenu-list list-unstyled">
                                 <li class="submenu-item"><a class="submenu-link"
-                                                            th:href="@{/#}">Quản lí người dùng</a></li>
+                                                            th:href="@{/admin/user}">Quản lí người dùng</a></li>
                                 <li class="submenu-item"><a class="submenu-link" th:href="@{/admin/category}">Quản
                                     lí
                                     danh mục</a>
@@ -345,16 +345,16 @@
     <footer class="app-footer">
         <div class="container text-center py-3">
             <nav class="app-pagination">
-                <ul class="pagination justify-content-center">
+                <ul class="pagination justify-content-center"  >
                     <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
-                        <!--   classappend dùng thay if , là lớp tạo thuộc tính css giựa vào điều kiện-->
-                        <a class="page-link" th:href="@{'?pageNo='+${currentPage+(-1)}}">Previous</a>
+                        <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+(-1)}}">Previous</a>
                     </li>
-                    <li th:each="i:${#numbers.sequence(1,totalPage)}" class="page-item"
-                        th:classappend="${currentPage==i}?'active':''"><a class="page-link" th:href="@{'?pageNo='+${i}}"
-                                                                          th:text="${i}"></a></li>
-                    <li class="page-item" th:classappend="${currentPage == totalPage} ? 'disabled' : ''">
-                        <a class="page-link" th:href="@{'?pageNo='+${currentPage+1}}">Next</a>
+                    <!--                    vì danh sách nếu không có keyword trùng dữ liệu thì tổng số trang sẽ bằng 0 nên ta đặt thêm điuều kiện nếu tổng số trang mà nhỏ hơn bằng 0 thì bằng 1-->
+                    <li th:each="i:${#numbers.sequence(1,(totalPage > 0 ? totalPage : 1))}" class="page-item" th:classappend="${currentPage==i}?'active':''">
+                        <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${i}}" th:text="${i}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${currentPage == totalPage || totalPage < 1} ? 'disabled' : ''">
+                        <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+1}}">Next</a>
                     </li>
                 </ul>
             </nav>

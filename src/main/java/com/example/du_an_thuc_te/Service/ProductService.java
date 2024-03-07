@@ -12,4 +12,6 @@ public interface ProductService {
     Product getProduct(int id);
     void deleteProduct(int id);
     Page<Product> getAll(int pageNo);
+    List<Product> searchProduct(String keyword);
+    Page<Product> searchProduct(String keyword,int pageNo);
 }

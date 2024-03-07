@@ -179,7 +179,7 @@
                             <!--                            đặt sau class thêm "show" để hiện vị trí hiện tại được trỏ-->
                             <ul class="submenu-list list-unstyled">
                                 <li class="submenu-item"><a class="submenu-link"
-                                                            th:href="@{/#}">Quản lí người dùng</a></li>
+                                                            th:href="@{/admin/user}">Quản lí người dùng</a></li>
                                 <li class="submenu-item"><a class="submenu-link active" th:href="@{/admin/category}">Quản
                                     lí
                                     danh mục</a>
@@ -287,8 +287,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
-
                                     <tr th:each="categories : ${list}">
                                         <td th:text="${categories.id}" class="cell"></td>
                                         <td th:text="${categories.categoryName}" class="cell"></td>
