@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user",uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class User {
     @Id
     @Column(name = "id")
@@ -44,6 +44,17 @@ public class User {
         this.telephone = telephone;
         this.fullName = fullName;
         this.userRoles = userRoles;
+    }
+
+    public User(String username, String password, Boolean enabled, Boolean gender, String address, String email, String telephone, String fullName) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.gender = gender;
+        this.address = address;
+        this.email = email;
+        this.telephone = telephone;
+        this.fullName = fullName;
     }
 
     public int getId() {

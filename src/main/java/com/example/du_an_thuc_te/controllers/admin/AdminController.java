@@ -37,6 +37,11 @@ public class AdminController {
         model.addAttribute("currentPage", pageNo);
         return "admin/user/index";
     }
+    @GetMapping("/admin/user/delete/{id}")
+    public String deleteUser(@PathVariable(value = "id") int id) {
+        this.userService.deleteUser(id);
+        return "redirect:/admin/user";
+    }
 //    @RequestMapping("admin/signup")
 //    public String signUp(){
 //        return "admin/signup";

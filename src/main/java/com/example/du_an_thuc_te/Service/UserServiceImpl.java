@@ -1,9 +1,6 @@
 package com.example.du_an_thuc_te.Service;
 
-import com.example.du_an_thuc_te.models.Categories;
-import com.example.du_an_thuc_te.models.Role;
-import com.example.du_an_thuc_te.models.User;
-import com.example.du_an_thuc_te.models.UserRole;
+import com.example.du_an_thuc_te.models.*;
 import com.example.du_an_thuc_te.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,9 +16,13 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    //    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -62,4 +63,21 @@ public class UserServiceImpl implements UserService{
     public void deleteUser(int id) {
         this.userRepository.deleteById(id);
     }
+
+    @Override
+    public void save(userDto userDto) {
+        Role role = new Role();
+        role.setName("USER");
+
+        UserRole userRole = new UserRole();
+        userRole.setRole(role);
+
+        Set<UserRole> userRoles = new HashSet<>();
+        userRoles.add(userRole);
+        User user = new User(userDto.getUsername(), passwordEncoder.encode(userDto.getPassword()), true, userDto.getGender(), userDto.getAddress(), userDto.getEmail(), userDto.getTelephone(), userDto.getFullname());
+        user.setUserRoles(userRoles);
+
+        this.userRepository.save(user);
+    }
+
 }

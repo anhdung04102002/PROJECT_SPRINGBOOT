@@ -276,7 +276,10 @@
                                     <tr>
                                         <th class="cell">ID</th>
                                         <th class="cell">Tên đăng nhập</th>
-                                        <th class="cell" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">Mật khẩu</th>
+                                        <th class="cell"
+                                            style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">Mật
+                                            khẩu
+                                        </th>
                                         <th class="cell">Tên đầy đủ</th>
                                         <th class="cell">Email</th>
                                         <th class="cell">Địa chỉ</th>
@@ -292,7 +295,8 @@
                                     <tr th:each="user : ${list}">
                                         <td th:text="${user.id}" class="cell"></td>
                                         <td th:text="${user.username}" class="cell"></td>
-                                        <td th:text="${user.password.substring(0, 5)+'...'}" class="cell" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap"></td>
+                                        <td th:text="${user.password.substring(0, 5)+'...'}" class="cell"
+                                            style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap"></td>
                                         <td th:text="${user.fullName}" class="cell"></td>
                                         <td th:text="${user.email}" class="cell"></td>
                                         <td th:text="${user.address}" class="cell"></td>
@@ -306,8 +310,11 @@
                                         <td th:if="${!user.enabled}" class="cell"><span
                                                 class="badge bg-danger">Khóa</span></td>
                                         <td class="cell">
-                                            <span th:each="userRole : ${user.userRoles}">
-                                                <span th:text="${userRole.role.name}"></span>
+                                                    <span th:each="userRole : ${user.userRoles}">
+                                                        <span th:text="${userRole.role.name}"></span>
+                                                    </span>
+                                            <span th:if="${user.userRoles == null || user.userRoles.isEmpty()}">
+                                                       USER
                                             </span>
                                         </td>
 
@@ -343,16 +350,22 @@
     <footer class="app-footer">
         <div class="container text-center py-3">
             <nav class="app-pagination">
-                <ul class="pagination justify-content-center"  >
+                <ul class="pagination justify-content-center">
                     <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
-                        <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+(-1)}}">Previous</a>
+                        <a class="page-link"
+                           th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+(-1)}}">Previous</a>
                     </li>
                     <!--                    vì danh sách nếu không có keyword trùng dữ liệu thì tổng số trang sẽ bằng 0 nên ta đặt thêm điuều kiện nếu tổng số trang mà nhỏ hơn bằng 0 thì bằng 1-->
-                    <li th:each="i:${#numbers.sequence(1,(totalPage > 0 ? totalPage : 1))}" class="page-item" th:classappend="${currentPage==i}?'active':''">
-                        <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${i}}" th:text="${i}"></a>
+                    <li th:each="i:${#numbers.sequence(1,(totalPage > 0 ? totalPage : 1))}" class="page-item"
+                        th:classappend="${currentPage==i}?'active':''">
+                        <a class="page-link"
+                           th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${i}}"
+                           th:text="${i}"></a>
                     </li>
-                    <li class="page-item" th:classappend="${currentPage == totalPage || totalPage < 1} ? 'disabled' : ''">
-                        <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+1}}">Next</a>
+                    <li class="page-item"
+                        th:classappend="${currentPage == totalPage || totalPage < 1} ? 'disabled' : ''">
+                        <a class="page-link"
+                           th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+1}}">Next</a>
                     </li>
                 </ul>
             </nav>
