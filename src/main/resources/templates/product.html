@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/fe/image/icon.png}" type="image/x-icon">
+    <title>Chi tiết sản phẩm</title>
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+            rel="stylesheet"
+    />
+
+</head>
+<body>
+<!-- Navbar -->
+<div class="p-3 text-center bg-white border-bottom fixed-top">
+    <div class="container">
+        <div class="row gy-3">
+            <!-- Left elements -->
+            <div class="col-lg-2 col-sm-4 col-4 d-flex justify-content-center align-items-center">
+                <a  target="_blank" class="">
+                    <img th:src="@{/fe/image/logo.png}" height="70"/>
+                </a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 50px">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/index}">Trang chủ</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Left elements -->
+
+            <!-- Center elements -->
+            <div class="order-lg-last col-lg-5 col-sm-8 col-8">
+                <div class="d-flex float-end">
+                        <span th:if="${#authentication.isAuthenticated()}"
+                              style="margin-right: 20px"> WELCOME
+                            <p
+                                    th:text="${#authentication.name}" ></p>
+                        </span>
+                    <a th:href="@{/admin-logout}"
+                       th:class="${#authentication.isAuthenticated()} ? 'me-1 border rounded py-1 px-3 nav-link d-flex align-items-center' :'d-none' "
+                       class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank">
+                        <p class="d-none d-md-block mb-0">Đăng xuất</p>
+                    </a>
+                    <a href="https://github.com/mdbootstrap/bootstrap-material-design"
+                       class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
+                            class="fas fa-shopping-cart m-1 me-md-2"></i>
+                        <p class="d-none d-md-block mb-0">My cart</p>
+                    </a>
+                </div>
+            </div>
+            <!-- Center elements -->
+
+            <!-- Right elements -->
+            <div class="col-lg-5 col-md-12 col-12" style="visibility: hidden;">
+                <div class="input-group float-center">
+                    <div class="form-outline">
+                        <input type="search" id="form1" class="form-control"/>
+                        <label class="form-label" for="form1">Search</label>
+                    </div>
+                    <button type="button" class="btn btn-primary shadow-0">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Right elements -->
+        </div>
+    </div>
+</div>>
+<!-- Navbar -->
+
+<!--Main layout-->
+<main class="mt-5 pt-4">
+    <div class="container mt-5">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-md-6 mb-4 d-flex justify-content-center align-items-center">
+                <img th:src="@{'/uploads/'+ ${productDetail.image}}" class="img-fluid align-self-center"
+                     style="object-fit: cover; object-position: center;" alt=""/>
+            </div>
+
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-6 mb-4" >
+                <!--Content-->
+                <div class="p-4">
+                    <div class="mb-3">
+                        <a href="">
+                            <span class="badge bg-dark me-1" th:text="${productDetail.categories.categoryName}"></span>
+                        </a>
+<!--                        <a href="">-->
+<!--                            <span class="badge bg-info me-1">New</span>-->
+<!--                        </a>-->
+<!--                        <a href="">-->
+<!--                            <span class="badge bg-danger me-1">Bestseller</span>-->
+<!--                        </a>-->
+                    </div>
+
+                    <p class="lead">
+<!--                        <span class="me-1">-->
+<!--                            <del>$200</del>-->
+<!--                        </span>-->
+                        <span th:inline="text">[[${#numbers.formatDecimal(productDetail.price, 0, 'COMMA', 2, 'POINT')}]]VNĐ</span>
+                    </p>
+
+                    <strong><p style="font-size: 20px;" th:text="${productDetail.productName}"></p></strong>
+
+                    <p  th:text="${productDetail.description}"></p>
+
+                    <form class="d-flex justify-content-left">
+                        <!-- Default input -->
+                        <div class="form-outline me-1" style="width: 100px;">
+                            <input type="number" value="1" class="form-control"/>
+                        </div>
+                        <button class="btn btn-primary ms-1" type="submit">
+                            Add to cart
+                            <i class="fas fa-shopping-cart ms-1"></i>
+                        </button>
+                    </form>
+                </div>
+                <!--Content-->
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+
+        <hr/>
+
+        <!--Grid row-->
+        <!--Grid row-->
+
+        <!--Grid row-->
+
+        <!--Grid row-->
+    </div>
+</main>
+<!--Main layout-->
+
+<!-- footer -->
+<footer class="text-center text-white mt-4" style="background-color: #607d8b;">
+    <!--Call to action-->
+    <section class="mt-5" style="background-color: #f5f5f5;">
+        <div class="container text-dark pt-3">
+            <header class="pt-4 pb-3">
+                <h3>Tại sao chọn chúng tôi?</h3>
+
+            </header>
+
+            <div class="row mb-4">
+                <div class="col-lg-4 col-md-6">
+                    <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-camera-retro fa-2x fa-fw text-primary floating"></i>
+            </span>
+                        <figcaption class="info">
+                            <h6 class="title">Giá cả hợp lý</h6>
+                            <p>Mức giá hợp lý, phù hợp với túi tiền của bạn</p>
+                        </figcaption>
+                    </figure>
+                    <!-- itemside // -->
+                </div>
+                <!-- col // -->
+                <div class="col-lg-4 col-md-6">
+                    <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-star fa-2x fa-fw text-primary floating"></i>
+            </span>
+                        <figcaption class="info">
+                            <h6 class="title">Chất lượng tốt nhất</h6>
+                            <p>Chúng tôi cam kết cung cấp sản phẩm/dịch vụ với chất lượng tốt nhất</p>
+                        </figcaption>
+                    </figure>
+                    <!-- itemside // -->
+                </div>
+                <!-- col // -->
+                <div class="col-lg-4 col-md-6">
+                    <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-plane fa-2x fa-fw text-primary floating"></i>
+            </span>
+                        <figcaption class="info">
+                            <h6 class="title">Giao hàng toàn cầu</h6>
+                            <p>Dịch vụ giao hàng toàn cầu, nhanh chóng và tiện lợi</p>
+                        </figcaption>
+                    </figure>
+                    <!-- itemside // -->
+                </div>
+                <!-- col // -->
+                <div class="col-lg-4 col-md-6">
+                    <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-users fa-2x fa-fw text-primary floating"></i>
+            </span>
+                        <figcaption class="info">
+                            <h6 class="title">Sự hài lòng của khách hàng</h6>
+                            <p>Đảm bảo sự hài lòng của khách hàng là ưu tiên hàng đầu của chúng tôi</p>
+                        </figcaption>
+                    </figure>
+                    <!-- itemside // -->
+                </div>
+                <!-- col // -->
+                <div class="col-lg-4 col-md-6">
+                    <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-thumbs-up fa-2x fa-fw text-primary floating"></i>
+            </span>
+                        <figcaption class="info">
+                            <h6 class="title">Khách hàng hạnh phúc</h6>
+                            <p>Chúng tôi luôn phấn đấu để mang lại trải nghiệm mua sắm tuyệt vời cho khách hàng</p>
+                        </figcaption>
+                    </figure>
+                    <!-- itemside // -->
+                </div>
+                <!-- col // -->
+                <div class="col-lg-4 col-md-6">
+                    <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-box fa-2x fa-fw text-primary floating"></i>
+            </span>
+                        <figcaption class="info">
+                            <h6 class="title">Hàng ngàn mặt hàng</h6>
+                            <p>Chúng tôi cung cấp hàng ngàn mặt hàng đa dạng, đáp ứng mọi nhu cầu của bạn</p>
+                        </figcaption>
+                    </figure>
+                    <!-- itemside // -->
+                </div>
+                <!-- col // -->
+            </div>
+        </div>
+        <!-- container end.// -->
+    </section>
+
+    <!-- Copyright -->
+</footer>
+
+</body>
+</html>

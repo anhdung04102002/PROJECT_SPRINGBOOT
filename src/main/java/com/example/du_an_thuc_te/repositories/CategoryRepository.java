@@ -11,5 +11,4 @@ public interface CategoryRepository extends JpaRepository<Categories,Integer> {
     @Query("select c from Categories c where  c.categoryName like %?1%")
     List<Categories> searchCategories(String keyword);
 
-
 }

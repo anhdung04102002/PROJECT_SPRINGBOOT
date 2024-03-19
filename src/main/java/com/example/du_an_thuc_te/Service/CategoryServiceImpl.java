@@ -1,7 +1,6 @@
 package com.example.du_an_thuc_te.Service;
 
 import com.example.du_an_thuc_te.models.Categories;
-import com.example.du_an_thuc_te.models.Product;
 import com.example.du_an_thuc_te.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

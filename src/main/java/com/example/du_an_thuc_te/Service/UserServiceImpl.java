@@ -76,7 +76,6 @@ public class UserServiceImpl implements UserService {
         userRoles.add(userRole);
         User user = new User(userDto.getUsername(), passwordEncoder.encode(userDto.getPassword()), true, userDto.getGender(), userDto.getAddress(), userDto.getEmail(), userDto.getTelephone(), userDto.getFullname());
         user.setUserRoles(userRoles);
-
         this.userRepository.save(user);
     }
 

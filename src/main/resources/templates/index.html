@@ -28,12 +28,12 @@
 <!--Main Navigation-->
 <header>
     <!-- Jumbotron -->
-    <div class="p-3 text-center bg-white border-bottom">
+    <div class="p-3 text-center bg-white border-bottom fixed-top">
         <div class="container">
             <div class="row gy-3">
                 <!-- Left elements -->
                 <div class="col-lg-2 col-sm-4 col-4 d-flex justify-content-center align-items-center">
-                    <a href="#" target="_blank" class="">
+                    <a target="_blank" class="">
                         <img th:src="@{/fe/image/logo.png}" height="70"/>
                     </a>
                 </div>
@@ -45,7 +45,7 @@
                         <span th:if="${#authentication.isAuthenticated()}"
                               style="margin-right: 20px"> WELCOME
                             <p
-                                    th:text="${#authentication.name} "></p>
+                                    th:text="${#authentication.name}"></p>
                         </span>
                         <a th:href="@{/admin-logout}"
                            th:class="${#authentication.isAuthenticated()} ? 'me-1 border rounded py-1 px-3 nav-link d-flex align-items-center' :'d-none' "
@@ -153,19 +153,22 @@
         </header>
 
         <div class="row">
-            <div th:each="product : ${product}" class="col-lg-3 col-md-6 col-sm-6 d-flex">
+            <div th:each="item : ${product}" class="col-lg-3 col-md-6 col-sm-6 d-flex">
                 <div class="card w-100 my-2 shadow-2-strong">
-                    <img th:src="@{'/uploads/'+ ${product.image}}" class="card-img-top" style="aspect-ratio: 1 / 1"
+                    <a th:href="@{'/index/product/' +  ${item.id}}" class="card-link stretched-link">
+                    </a>
+                    <!--                    phải tách biệt $item.id để tránh lỗi-->
+                    <img th:src="@{'/uploads/'+ ${item.image}}" class="card-img-top" style="aspect-ratio: 1 / 1"
                          th:enctype="principal"/>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title" th:text="${product.productName}"></h5>
+                        <h5 class="card-title" th:text="${item.productName}"></h5>
                         <p class="card-text">
-                            <span th:inline="text"> [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]VNĐ</span>
+                            <span th:inline="text"> [[${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}]]VNĐ</span>
                         </p>
                         <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                             <a href="#" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-<!--                            <a href="#" class="btn btn-light border px-2 pt-2 icon-hover"><i-->
-<!--                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>-->
+                            <!--                            <a href="#" class="btn btn-light border px-2 pt-2 icon-hover"><i-->
+                            <!--                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>-->
                         </div>
                     </div>
                 </div>
