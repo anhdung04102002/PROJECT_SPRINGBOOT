@@ -52,7 +52,7 @@
                            class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank">
                             <p class="d-none d-md-block mb-0">Đăng xuất</p>
                         </a>
-                        <a href="https://github.com/mdbootstrap/bootstrap-material-design"
+                        <a th:href="@{/index/add-cartitem}"
                            class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
                                 class="fas fa-shopping-cart m-1 me-md-2"></i>
                             <p class="d-none d-md-block mb-0">My cart</p>
@@ -155,25 +155,27 @@
         <div class="row">
             <div th:each="item : ${product}" class="col-lg-3 col-md-6 col-sm-6 d-flex">
                 <div class="card w-100 my-2 shadow-2-strong">
-                    <a th:href="@{'/index/product/' +  ${item.id}}" class="card-link stretched-link">
-                    </a>
-                    <!--                    phải tách biệt $item.id để tránh lỗi-->
-                    <img th:src="@{'/uploads/'+ ${item.image}}" class="card-img-top" style="aspect-ratio: 1 / 1"
-                         th:enctype="principal"/>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title" th:text="${item.productName}"></h5>
-                        <p class="card-text">
-                            <span th:inline="text"> [[${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}]]VNĐ</span>
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                            <a href="#" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-                            <!--                            <a href="#" class="btn btn-light border px-2 pt-2 icon-hover"><i-->
-                            <!--                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>-->
+                    <form th:action="@{/index/add-cartitem/save}" method="post">
+                        <input type="hidden" name="productId" th:value="${item.id}"/>
+                        <a th:href="@{'/index/product/' + ${item.id}}" >
+                            <img th:src="@{'/uploads/' + ${item.image}}" class="card-img-top"
+                                 style="aspect-ratio: 1 / 1" th:enctype="principal"/>
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title" th:text="${item.productName}"></h5>
+                            <p class="card-text">
+                                <span th:inline="text"> [[${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}]]VNĐ</span>
+                            </p>
+                            <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                                <button type="submit" class="btn btn-primary shadow-0 me-1">Add to cart</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 </section>
 <!-- Products -->

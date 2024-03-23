@@ -29,7 +29,8 @@ public class User {
     private String fullName;
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<UserRole> userRoles;
-
+    @OneToOne(mappedBy = "user")
+    private ShoppingCart shoppingCart;
     public User() {
     }
 
