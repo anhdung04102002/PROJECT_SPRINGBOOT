@@ -48,7 +48,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<Product> getAll(int pageNo) {
-
         Pageable pageable = PageRequest.of(pageNo - 1, 3);
         return this.productRepositories.findAll(pageable);
     }
@@ -73,4 +72,6 @@ public class ProductServiceImpl implements ProductService {
             return new PageImpl<>(sublist, pageable, totalItems);
         }
     }
+
+
 }

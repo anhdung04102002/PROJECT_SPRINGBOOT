@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <link rel="icon" th:href="@{/fe/image/icon.png}" type="image/x-icon">
+  <!--    icon trang web -->
+  <title>Trang chủ</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"/>
+  <!-- MDB -->
+  <link rel="stylesheet" th:href="@{/css/mdb.min.css}"/>
+  <!-- Custom styles -->
+  <link rel="stylesheet" th:href="@{/fe/css/style.css}"/>
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+<!--Main Navigation-->
+<header >
+  <!-- Jumbotron -->
+
+  <div class="p-3 text-center bg-white border-bottom">
+    <div class="container ">
+      <div class="row gy-3">
+        <!-- Left elements -->
+        <div class="col-lg-2 col-sm-4 col-4 d-flex justify-content-center align-items-center">
+          <a target="_blank" class="">
+            <img th:src="@{/fe/image/logo.png}" height="70"/>
+          </a>
+        </div>
+        <!-- Left elements -->
+
+        <!-- Center elements -->
+        <div class="order-lg-last col-lg-5 col-sm-8 col-8">
+          <div class="d-flex float-end">
+                        <span th:if="${#authentication.isAuthenticated()}"
+                              style="margin-right: 20px"> WELCOME
+                            <p
+                                    th:text="${#authentication.name}"></p>
+                        </span>
+            <a th:href="@{/admin-logout}"
+               th:class="${#authentication.isAuthenticated()} ? 'me-1 border rounded py-1 px-3 nav-link d-flex align-items-center' :'d-none' "
+               class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank">
+              <p class="d-none d-md-block mb-0">Đăng xuất</p>
+            </a>
+            <a th:href="@{/index/add-cartitem}"
+               class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i
+                    class="fas fa-shopping-cart m-1 me-md-2"></i>
+              <p class="d-none d-md-block mb-0">My cart</p>
+            </a>
+          </div>
+        </div>
+        <!-- Center elements -->
+
+        <!-- Right elements -->
+        <div class="col-lg-5 col-md-12 col-12">
+          <form class="input-group float-center">
+            <div class="form-outline">
+              <input type="search" id="form1" class="form-control" name="keyword"/>
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button type="submit" class="btn btn-primary shadow-0">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+        <!-- Right elements -->
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <!-- Container wrapper -->
+    <div class="container justify-content-center justify-content-md-between">
+      <!-- Toggle button -->
+      <button class="navbar-toggler border py-2 text-dark" type="button" data-mdb-toggle="collapse"
+              data-mdb-target="#navbarLeftAlignExample" aria-controls="navbarLeftAlignExample"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-dark" aria-current="page" th:href="@{/index}">Trang chủ</a>
+          </li>
+
+          <!-- Navbar dropdown -->
+          <li li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
+               data-mdb-toggle="dropdown" aria-expanded="false" th:text="${CategoryName.categoryName}">
+
+            </a>
+            <!-- Dropdown menu -->
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li th:each="category: ${listCategory}" th:if="${category.categoryName!='Sản phẩm nổi bật'}">
+                <a class="dropdown-item" th:href="@{'/index/category/' +${category.id}}" th:text="${category.categoryName}"></a>
+              </li>
+
+            </ul>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+
+
+
+
+  <!-- Navbar -->
+  <!-- Jumbotron -->
+  <div class="">
+    <img th:src="@{/fe/image/banner.jpg}" alt="" width="100%" height="auto">
+  </div>
+  <!-- Jumbotron -->
+</header>
+<!-- Products -->
+<section>
+  <div class="container my-5">
+    <header class="mb-4">
+      <h3 th:text="${CategoryName.categoryName}"></h3>
+    </header>
+
+    <div class="row">
+      <div th:each="item : ${listSetProduct}" class="col-lg-3 col-md-6 col-sm-6 d-flex">
+        <div class="card w-100 my-2 shadow-2-strong">
+          <form th:action="@{/index/add-cartitem/save}" method="post">
+            <input type="hidden" name="productId" th:value="${item.id}"/>
+            <a th:href="@{'/index/product/' + ${item.id}}" >
+              <img th:src="@{'/uploads/' + ${item.image}}" class="card-img-top"
+                   style="aspect-ratio: 1 / 1" th:enctype="principal"/>
+            </a>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title" th:text="${item.productName}"></h5>
+              <p class="card-text">
+                <span th:inline="text"> [[${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}]]VNĐ</span>
+              </p>
+              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                <button type="submit" class="btn btn-primary shadow-0 me-1">Add to cart</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>
+<!-- Products -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center"  >
+    <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
+      <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+(-1)}}">Previous</a>
+    </li>
+    <!--                    vì danh sách nếu không có keyword trùng dữ liệu thì tổng số trang sẽ bằng 0 nên ta đặt thêm điuều kiện nếu tổng số trang mà nhỏ hơn bằng 0 thì bằng 1-->
+    <li th:each="i:${#numbers.sequence(1,(totalPage > 0 ? totalPage : 1))}" class="page-item" th:classappend="${currentPage==i}?'active':''">
+      <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${i}}" th:text="${i}"></a>
+    </li>
+    <li class="page-item" th:classappend="${currentPage == totalPage || totalPage < 1} ? 'disabled' : ''">
+      <a class="page-link" th:href="@{${keyword != null && keyword != '' ? '?keyword=' + keyword+'&':'?'}+'pageNo='+${currentPage+1}}">Next</a>
+    </li>
+  </ul>
+</nav>
+
+
+<!-- Feature -->
+<section class="mt-5" style="background-color: #f5f5f5;">
+  <div class="container text-dark pt-3">
+    <header class="pt-4 pb-3">
+      <h3>Tại sao chọn chúng tôi?</h3>
+
+    </header>
+
+    <div class="row mb-4">
+      <div class="col-lg-4 col-md-6">
+        <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-camera-retro fa-2x fa-fw text-primary floating"></i>
+            </span>
+          <figcaption class="info">
+            <h6 class="title">Giá cả hợp lý</h6>
+            <p>Mức giá hợp lý, phù hợp với túi tiền của bạn</p>
+          </figcaption>
+        </figure>
+        <!-- itemside // -->
+      </div>
+      <!-- col // -->
+      <div class="col-lg-4 col-md-6">
+        <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-star fa-2x fa-fw text-primary floating"></i>
+            </span>
+          <figcaption class="info">
+            <h6 class="title">Chất lượng tốt nhất</h6>
+            <p>Chúng tôi cam kết cung cấp sản phẩm/dịch vụ với chất lượng tốt nhất</p>
+          </figcaption>
+        </figure>
+        <!-- itemside // -->
+      </div>
+      <!-- col // -->
+      <div class="col-lg-4 col-md-6">
+        <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-plane fa-2x fa-fw text-primary floating"></i>
+            </span>
+          <figcaption class="info">
+            <h6 class="title">Giao hàng toàn cầu</h6>
+            <p>Dịch vụ giao hàng toàn cầu, nhanh chóng và tiện lợi</p>
+          </figcaption>
+        </figure>
+        <!-- itemside // -->
+      </div>
+      <!-- col // -->
+      <div class="col-lg-4 col-md-6">
+        <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-users fa-2x fa-fw text-primary floating"></i>
+            </span>
+          <figcaption class="info">
+            <h6 class="title">Sự hài lòng của khách hàng</h6>
+            <p>Đảm bảo sự hài lòng của khách hàng là ưu tiên hàng đầu của chúng tôi</p>
+          </figcaption>
+        </figure>
+        <!-- itemside // -->
+      </div>
+      <!-- col // -->
+      <div class="col-lg-4 col-md-6">
+        <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-thumbs-up fa-2x fa-fw text-primary floating"></i>
+            </span>
+          <figcaption class="info">
+            <h6 class="title">Khách hàng hạnh phúc</h6>
+            <p>Chúng tôi luôn phấn đấu để mang lại trải nghiệm mua sắm tuyệt vời cho khách hàng</p>
+          </figcaption>
+        </figure>
+        <!-- itemside // -->
+      </div>
+      <!-- col // -->
+      <div class="col-lg-4 col-md-6">
+        <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-box fa-2x fa-fw text-primary floating"></i>
+            </span>
+          <figcaption class="info">
+            <h6 class="title">Hàng ngàn mặt hàng</h6>
+            <p>Chúng tôi cung cấp hàng ngàn mặt hàng đa dạng, đáp ứng mọi nhu cầu của bạn</p>
+          </figcaption>
+        </figure>
+        <!-- itemside // -->
+      </div>
+      <!-- col // -->
+    </div>
+  </div>
+  <!-- container end.// -->
+</section>
+<!-- Feature -->
+
+<!-- Blog -->
+
+<!-- Blog -->
+
+
+<!-- Footer -->
+<!-- MDB -->
+<script type="text/javascript" th:src="@{/fe/js/mdb.min.js}"></script>
+<!-- Custom scripts -->
+<script type="text/javascript" th:src="@{/fe/js/script.js}"></script>
+
+</body>
+
+</html>
