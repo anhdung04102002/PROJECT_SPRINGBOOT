@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class DuAnThucTeApplication {
+public class SpringBootProjectApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DuAnThucTeApplication.class, args);
+        SpringApplication.run(SpringBootProjectApplication.class, args);
     }
     @Bean
     CommandLineRunner init(StorageService storageService) {
